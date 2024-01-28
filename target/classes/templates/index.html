@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body>
+
+    <h1>Button Template</h1>
+
+    <a id="register" th:href="@{/register}">Register</a>
+    <a id="login" th:href="@{/login}">Login</a>
+    <a id="play" th:href="@{/play}">Play</a>
+    <button sec:authorize="isAuthenticated()" id="logged">IM LOGGED</button>
+
+    </body>
+</header>
+</html>

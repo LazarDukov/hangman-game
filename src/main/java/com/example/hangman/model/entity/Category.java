@@ -1,25 +1,24 @@
 package com.example.hangman.model.entity;
 
 import com.example.hangman.model.enums.CategoryEnum;
-import com.example.hangman.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity {
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private CategoryEnum category;
+    @Column
+    private CategoryEnum categoryEnum;
 
     public Category() {
     }
 
-    public CategoryEnum getCategory() {
-        return category;
+    public CategoryEnum getCategoryEnum() {
+        return categoryEnum;
     }
 
-    public Category setCategory(CategoryEnum category) {
-        this.category = category;
+    public Category setCategoryEnum(CategoryEnum categoryEnum) {
+        this.categoryEnum = categoryEnum;
         return this;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.hangman.model.entity;
 
 import com.example.hangman.model.enums.CategoryEnum;
-import com.example.hangman.model.enums.DifficultEnum;
+import com.example.hangman.model.enums.DifficultyEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
@@ -20,7 +20,7 @@ public class Word extends BaseEntity {
     private CategoryEnum category;
 
     @Enumerated
-    private DifficultEnum difficult;
+    private DifficultyEnum difficulty;
 
     public Word() {
     }
@@ -52,12 +52,12 @@ public class Word extends BaseEntity {
         return this;
     }
 
-    public DifficultEnum getDifficult() {
-        return difficult;
+    public DifficultyEnum getDifficulty() {
+        return difficulty;
     }
 
-    public Word setDifficult(DifficultEnum difficult) {
-        this.difficult = difficult;
+    public Word setDifficulty(DifficultyEnum difficulty) {
+        this.difficulty = difficulty;
         return this;
     }
 }

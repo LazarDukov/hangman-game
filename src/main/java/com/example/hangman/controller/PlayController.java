@@ -21,10 +21,15 @@ public class PlayController {
         return "index";
     }
 
-    @GetMapping("/play")
-    private String getPlayPage(Model model) {
-        String word = playService.getWord().getWord();
-        model.addAttribute("currentWord", word);
-        return "play";
+    @GetMapping("/choose-difficulty")
+    private String getChooseDifficultyPage(Model model) {
+//        String word = playService.getWord().getWord();
+//        model.addAttribute("currentWord", word);
+        return "choose-difficulty";
+    }
+
+    @GetMapping("/easy/choose-category")
+    private String getEasyPage() {
+        return "choose-category";
     }
 }

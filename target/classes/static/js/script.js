@@ -30,7 +30,6 @@ const gameOver = (isVictory) => {
         const isGameOverOrVictory = isVictory ? `You found the word:` : `The correct word was:`;
         gameModal.querySelector("h4").innerText = `${isVictory ? 'Congrats!' : 'Game Over!'}`;
         gameModal.querySelector("p").innerHTML = `${isGameOverOrVictory} <b>${currentWord}</b>`;
-
         gameModal.classList.add("show");
     }, 300);
 }
@@ -67,3 +66,17 @@ for (let i = 97; i <= 122; i++) {
 }
 getRandomWord();
 playAgainButton.addEventListener("click", () => location.reload());
+
+fetch('/currentUserId')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('User not authenticated');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('User ID:', data.id);
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });

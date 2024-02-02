@@ -3,6 +3,7 @@ package com.example.hangman.config;
 
 import com.example.hangman.repository.UserRepository;
 import com.example.hangman.util.ApplicationUserDetailsService;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,7 @@ public class SecurityConfiguration {
                         authorizeHttpRequests().
                 // allow access to all static files (images, CSS, js)
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
-                requestMatchers("/", "/register", "/login", "/play", "/login-error", "/get-word").permitAll().
+                requestMatchers("/", "/register", "/login", "/play", "/login-error", "/get-word", "/won", "/lost").permitAll().
                 // the URL-s below are available for all users - logged in and anonymous
                         anyRequest().authenticated().
                 and().
@@ -41,12 +42,13 @@ public class SecurityConfiguration {
                 // where do we go after login
 //              //use true argument if you always want to go there, otherwise go to previous page
         defaultSuccessUrl("/", true).//use true argument if you always want to go there, otherwise go to previous page
-                failureForwardUrl("/login-error").and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true).
+                failureForwardUrl("/login-error").
                 and().
                 securityContext().
                 securityContextRepository(securityContextRepository);
 
         return httpSecurity.build();
+
 
     }
 
@@ -67,6 +69,11 @@ public class SecurityConfiguration {
                 new RequestAttributeSecurityContextRepository(),
                 new HttpSessionSecurityContextRepository()
         );
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
 

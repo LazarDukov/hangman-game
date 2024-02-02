@@ -66,7 +66,7 @@ public class InitService {
     private void initUsers() {
         User gamer = new User();
         gamer.setUsername("gamer");
-        gamer.setPassword(passwordEncoder.encode("12345"));
+        gamer.setPassword(passwordEncoder.encode("gamer"));
         gamer.setFirstName("gamer");
         gamer.setLastName("gamerov");
         gamer.setEmail("gamer@abv.bg");

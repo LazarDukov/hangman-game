@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Login Form</h1>
-<form id="registrationForm"
-      th:method="post"
-      th:action="@{/login}">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body>
+    <h1>Login Form</h1>
+    <form th:method="POST"
+          th:action="@{/login}">
+        <label for="username">Username:</label>
+        <input th:value="${username}" type="text" id="username" name="username" required>
 
+        <label for="password">Password:</label>
+        <input th:value="${password}" type="password" id="password" name="password" required>
 
-    <button type="submit">Login</button>
-</form>
-</body>
+        <p class="errors alert alert-danger" th:if="${bad_credentials}">Invalid username or password.</p>
+        <button type="submit" value="Login">Login</button>
+    </form>
+    </body>
+</header>
 </html>

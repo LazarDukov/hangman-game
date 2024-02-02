@@ -78,6 +78,10 @@ public class User extends BaseEntity {
         return points;
     }
 
+    public User setPoints(Integer points) {
+        this.points = points;
+        return this;
+    }
 
     public List<UserRole> getRoles() {
         return roles;

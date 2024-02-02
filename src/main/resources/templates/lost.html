@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+<script src="js/script.js" defer></script>
+
+
+
+<header>
+  <div th:replace="~{fragments/navbar :: navbar}">
+    Navbar
+  </div>
+  <body>
+  <div class="game-over" >
+    <div class="content">
+      <h4>Game over!</h4>
+      <p>The correct word was: <b>rainbow</b></p>
+      <button class="play-again">Play again</button>
+
+    </div>
+
+
+  </div>
+
+
+  </body>
+</header>
+</html>

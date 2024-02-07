@@ -23,8 +23,5 @@ public class UserController {
         return "/won";
     }
 
-    @GetMapping("/lost")
-    private String getLostPage() {
-        return "lost";
-    }
+
 }

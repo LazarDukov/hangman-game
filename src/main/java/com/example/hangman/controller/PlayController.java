@@ -4,13 +4,11 @@ import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
 import com.example.hangman.service.PlayService;
+import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -23,6 +21,9 @@ public class PlayController {
     public PlayController(PlayService playService) {
         this.playService = playService;
     }
+
+    @Autowired
+    public WordSession wordSession;
 
     @GetMapping("/")
     private String getIndex() {
@@ -38,10 +39,16 @@ public class PlayController {
     private String getWordPage(Model model, @RequestParam DifficultyEnum difficulty, @RequestParam CategoryEnum category) {
         List<Word> secretWords = playService.getSecretWords(difficulty, category);
         String word = playService.secretWord(secretWords).getWord();
+        wordSession.setWord(word);
         model.addAttribute("currentWord", word);
         return "play";
     }
 
-
+    @GetMapping("/lost")
+    private String getLostPage(Model model) {
+        String secretWord = wordSession.getWord();
+        model.addAttribute("secretWord", secretWord);
+        return "lost";
+    }
 
 }

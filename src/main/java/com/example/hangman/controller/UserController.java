@@ -17,11 +17,5 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/won")
-    private String getWonPage(Principal principal) {
-        userService.updatePoints(principal);
-        return "/won";
-    }
-
 
 }

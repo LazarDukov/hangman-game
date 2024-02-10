@@ -17,11 +17,13 @@
   <body>
   <div class="game-over">
 
-      <h4>Game over!</h4>
-      <p>The correct word was: <b>rainbow</b></p>
-      <button class="play-again">Play again</button>
+      <div class="content">
+          <h4>You won!</h4>
+          <p>You found the word: </p>
+          <strong> <ul th:method="get" th:text="*{secretWord}"></ul></strong>
+          <a th:href="@{/get-word}" class="play-again">Play again</a>
 
-
+      </div>
 
 
   </div>

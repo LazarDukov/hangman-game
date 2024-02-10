@@ -1,5 +1,6 @@
 package com.example.hangman.service;
 
+import com.example.hangman.model.entity.User;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
@@ -7,6 +8,7 @@ import com.example.hangman.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -31,4 +33,6 @@ public class PlayService {
         return wordRepository.findAllByDifficultyAndCategory(difficulty, category);
 
     }
+
+
 }

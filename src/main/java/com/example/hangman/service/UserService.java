@@ -24,5 +24,6 @@ public class UserService {
     public void updatePoints(Principal principal) {
         User loggedUser = getLoggedUser(principal.getName());
         loggedUser.setPoints(loggedUser.getPoints() + 1);
+        userRepository.save(loggedUser);
     }
 }

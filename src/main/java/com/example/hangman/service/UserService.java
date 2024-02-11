@@ -25,12 +25,16 @@ public class UserService {
 
     public void updatePoints(Principal principal, WordSession wordSession) {
         User loggedUser = getLoggedUser(principal.getName());
-        if (wordSession.getDifficulty().getDifficultyEnum().toString().equals("EASY")) {
-            loggedUser.setPoints(loggedUser.getPoints()+100);
-        } else if (wordSession.getDifficulty().getDifficultyEnum().toString().equals("MEDIUM")) {
-            loggedUser.setPoints(loggedUser.getPoints()+200);
-        } else if (wordSession.getDifficulty().getDifficultyEnum().toString().equals("HARD")) {
-            loggedUser.setPoints(loggedUser.getPoints()+300);
+        switch (wordSession.getDifficulty().getDifficultyEnum().toString()) {
+            case "EASY":
+                loggedUser.setPoints(loggedUser.getPoints() + 100);
+                break;
+            case "MEDIUM":
+                loggedUser.setPoints(loggedUser.getPoints() + 200);
+                break;
+            case "HARD":
+                loggedUser.setPoints(loggedUser.getPoints() + 300);
+                break;
         }
         userRepository.save(loggedUser);
     }

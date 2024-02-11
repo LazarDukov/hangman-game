@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<body>
+<form id="newWordForm"
+      th:method="post"
+      th:action="@{/add-word}"
+      th:object="${newWordDTO}">
+
+    <label for="word">New word:</label>
+    <input type="text" id="word" name="word" required>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required>
+
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+        <option value="HISTORY">history</option>
+        <option value="GEOGRAPHY">geography</option>
+        <option value="ANIMALS">animals</option>
+    </select>
+
+
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty" name="difficulty" required>
+        <option value="EASY">easy</option>
+        <option value="MEDIUM">medium</option>
+        <option value="HARD">hard</option>
+    </select>
+
+    <button type="submit">Add new word</button>
+</form>
+</body>
+</html>

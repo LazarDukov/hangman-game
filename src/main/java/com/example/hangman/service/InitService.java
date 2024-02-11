@@ -72,7 +72,20 @@ public class InitService {
         gamer.setEmail("gamer@abv.bg");
         gamer.setRoles(new ArrayList<>());
         gamer.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword(passwordEncoder.encode("admin"));
+        admin.setFirstName("admin");
+        admin.setLastName("adminov");
+        admin.setEmail("admin@abv.bg");
+        admin.setRoles(new ArrayList<>());
+        admin.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
+
         userRepository.save(gamer);
+        userRepository.save(admin);
+
+
     }
 
     private void initCategories() {
@@ -103,15 +116,15 @@ public class InitService {
     private void initWords() {
         Word tiger = new Word();
         tiger.setWord("tiger");
-        tiger.setCategory(CategoryEnum.ANIMALS);
+        tiger.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.ANIMALS));
         tiger.setDescription("An animal which is from the cats family and can run very fast.");
-        tiger.setDifficulty(DifficultyEnum.EASY);
+        tiger.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY));
 
         Word newYork = new Word();
         newYork.setWord("new york");
-        newYork.setCategory(CategoryEnum.GEOGRAPHY);
+        newYork.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.GEOGRAPHY));
         newYork.setDescription("A very big city which is located somewhere in USA.");
-        newYork.setDifficulty(DifficultyEnum.HARD);
+        newYork.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.HARD));
 
 
         wordRepository.save(tiger);

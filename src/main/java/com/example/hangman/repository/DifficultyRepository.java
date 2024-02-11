@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DifficultyRepository extends JpaRepository<Difficulty, Long> {
-
+    Difficulty findDifficultyByDifficultyEnum(DifficultyEnum difficultyEnum);
 }

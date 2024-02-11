@@ -1,34 +1,32 @@
 package com.example.hangman.controller;
 
+import com.example.hangman.model.entity.Category;
+import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
 import com.example.hangman.service.PlayService;
-import com.example.hangman.service.UserService;
 import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
 public class PlayController {
     private final PlayService playService;
-    private final UserService userService;
+
+    private final WordSession wordSession;
 
     @Autowired
-    public PlayController(PlayService playService, UserService userService) {
+    public PlayController(PlayService playService, WordSession wordSession) {
         this.playService = playService;
-        this.userService = userService;
+        this.wordSession = wordSession;
     }
 
-    @Autowired
-    public WordSession wordSession;
 
     @GetMapping("/")
     private String getIndex() {
@@ -45,6 +43,8 @@ public class PlayController {
         List<Word> secretWords = playService.getSecretWords(difficulty, category);
         String word = playService.secretWord(secretWords).getWord();
         wordSession.setWord(word);
+        wordSession.setDifficulty(new Difficulty().setDifficultyEnum(difficulty));
+        wordSession.setCategory(new Category().setCategoryEnum(category));
         model.addAttribute("currentWord", word);
         return "play";
     }
@@ -55,12 +55,6 @@ public class PlayController {
         model.addAttribute("secretWord", secretWord);
         return "lost";
     }
-    @GetMapping("/won")
-    private String getWonPage(Model model, Principal principal) {
-        String secretWord = wordSession.getWord();
-        userService.updatePoints(principal);
-        model.addAttribute("secretWord", secretWord);
-        return "won";
-    }
+
 
 }

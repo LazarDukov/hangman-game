@@ -1,5 +1,7 @@
 package com.example.hangman.repository;
 
+import com.example.hangman.model.entity.Category;
+import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
@@ -10,5 +12,5 @@ import java.util.List;
 
 @Repository
 public interface WordRepository extends JpaRepository<Word, Long> {
-    List<Word> findAllByDifficultyAndCategory(DifficultyEnum difficultyEnum, CategoryEnum categoryEnum);
+    List<Word> findAllByDifficultyAndCategory(Difficulty difficultyEnum, Category categoryEnum);
 }

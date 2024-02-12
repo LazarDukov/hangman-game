@@ -5,6 +5,8 @@ import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
+import com.example.hangman.repository.CategoryRepository;
+import com.example.hangman.repository.DifficultyRepository;
 import com.example.hangman.service.PlayService;
 import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,15 @@ public class PlayController {
 
     private final WordSession wordSession;
 
+    private final DifficultyRepository difficultyRepository;
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    public PlayController(PlayService playService, WordSession wordSession) {
+    public PlayController(PlayService playService, WordSession wordSession, DifficultyRepository difficultyRepository, CategoryRepository categoryRepository) {
         this.playService = playService;
         this.wordSession = wordSession;
+        this.difficultyRepository = difficultyRepository;
+        this.categoryRepository = categoryRepository;
     }
 
 
@@ -39,12 +46,14 @@ public class PlayController {
     }
 
     @GetMapping("/play")
-    private String getWordPage(Model model, @RequestParam DifficultyEnum difficulty, @RequestParam CategoryEnum category) {
-        List<Word> secretWords = playService.getSecretWords(difficulty, category);
+    private String getWordPage(Model model, @RequestParam String difficulty, @RequestParam String category) {
+        Difficulty choosenDifficulty = difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficulty));
+        Category choosenCategory = categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(category));
+        List<Word> secretWords = playService.getSecretWords(choosenDifficulty, choosenCategory);
         String word = playService.secretWord(secretWords).getWord();
         wordSession.setWord(word);
-        wordSession.setDifficulty(new Difficulty().setDifficultyEnum(difficulty));
-        wordSession.setCategory(new Category().setCategoryEnum(category));
+        wordSession.setDifficulty(choosenDifficulty);
+        wordSession.setCategory(choosenCategory);
         model.addAttribute("currentWord", word);
         return "play";
     }

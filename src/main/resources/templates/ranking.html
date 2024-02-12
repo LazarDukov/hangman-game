@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body>
+    <table class="ranking">
+        <thead>
+        <tr>
+            <th>Username:
+            <th>Points:
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iterStat : ${ranking}">
+            <td th:text="*{user.username}">
+            <td th:text="*{user.points}">
+
+
+        </tr>
+
+        </tbody>
+
+
+    </table>
+
+
+    </body>
+</header>
+</html>

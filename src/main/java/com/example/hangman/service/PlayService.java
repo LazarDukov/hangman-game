@@ -1,5 +1,7 @@
 package com.example.hangman.service;
 
+import com.example.hangman.model.entity.Category;
+import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.User;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
@@ -29,7 +31,7 @@ public class PlayService {
         return secretWords.get(randomIndex);
     }
 
-    public List<Word> getSecretWords(DifficultyEnum difficulty, CategoryEnum category) {
+    public List<Word> getSecretWords(Difficulty difficulty, Category category) {
         return wordRepository.findAllByDifficultyAndCategory(difficulty, category);
 
     }

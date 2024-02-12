@@ -18,6 +18,8 @@
     <a id="register" th:href="@{/register}">Register</a>
     <a id="login" th:href="@{/auth-login}">Login</a>
     <a id="play" th:href="@{/get-word}">Play</a>
+    <a id="ranking" th:href="@{/ranking}">Ranking</a>
+    <a id="add-word" sec:authorize="hasRole('ADMIN')" th:href="@{/add-word}">Add new word</a>
 <!--    <button sec:authorize="isAuthenticated()" id="logged">IM LOGGED</button>-->
     <a >LOGGED</a>
     </body>

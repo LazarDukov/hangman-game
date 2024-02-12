@@ -1,6 +1,5 @@
 package com.example.hangman.service;
 
-import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.User;
 import com.example.hangman.repository.UserRepository;
 import com.example.hangman.util.WordSession;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -37,5 +37,10 @@ public class UserService {
                 break;
         }
         userRepository.save(loggedUser);
+    }
+
+    public List<User> getRanking() {
+        return userRepository.findAllByOrderByPointsDesc();
+
     }
 }

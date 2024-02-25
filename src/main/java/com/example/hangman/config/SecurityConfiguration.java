@@ -44,7 +44,7 @@ public class SecurityConfiguration {
 //              //use true argument if you always want to go there, otherwise go to previous page
         defaultSuccessUrl("/", true).//use true argument if you always want to go there, otherwise go to previous page
                 failureForwardUrl("/login-error").
-                and().
+                and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true).and().
                 securityContext().
                 securityContextRepository(securityContextRepository);
 

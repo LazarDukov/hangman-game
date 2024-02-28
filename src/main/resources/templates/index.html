@@ -11,17 +11,24 @@
     <div th:replace="~{fragments/navbar :: navbar}">
         Navbar
     </div>
-    <body>
+    <body class="index">
 
-    <h1>Button Template</h1>
+    <h1>Hello!</h1><br>
+    <h2>Welcome to the hangman game!<br>
+    Here you can test your knowledge of the words which are surround us constantly!<br><br>
+    If you want start playing now, you should register your account first from here
+        <a id="register" th:href="@{/register}">here</a> <br>
+        or if you already registered you can log in from
+        <a id="login" th:href="@{/auth-login}">here</a>!<br><br></h2>
+    <h3>Good luck and have fun!</h3>
 
-    <a id="register" th:href="@{/register}">Register</a>
-    <a id="login" th:href="@{/auth-login}">Login</a>
-    <a id="play" th:href="@{/get-word}">Play</a>
-    <a id="ranking" th:href="@{/ranking}">Ranking</a>
-    <a id="add-word" sec:authorize="hasRole('ADMIN')" th:href="@{/add-word}">Add new word</a>
+
+
+
+<!--    <a id="play" th:href="@{/get-word}">Play</a>-->
+<!--    <a id="ranking" th:href="@{/ranking}">Ranking</a>-->
+<!--    <a id="add-word" sec:authorize="hasRole('ADMIN')" th:href="@{/add-word}">Add new word</a>-->
 <!--    <button sec:authorize="isAuthenticated()" id="logged">IM LOGGED</button>-->
-    <a >LOGGED</a>
     </body>
 </header>
 </html>

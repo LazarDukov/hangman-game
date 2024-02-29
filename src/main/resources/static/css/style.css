@@ -153,6 +153,11 @@ body {
     padding-left: 500px;
     color: white;
 }
+.index .register-form-h1 {
+    font-size: 40px;
+    padding-left: 400px;
+    color: white;
+}
 
 .index h2 {
     font-size: 30px;
@@ -167,6 +172,31 @@ body {
     font-size: 40px;
     padding-left: 350px;
     color: white;
+}
+
+.index .register-table label {
+    position: center;
+
+    font-size: 30px;
+    color: white;
+}
+
+.index .register-table input, select {
+border-color: white;
+    font-size: 25px;
+    color: white;
+    background-color: #a6f6ff;
+}
+
+.register-button {
+    margin-left: 500px;
+    font-size: 40px;
+    color: white;
+    background: #a6f6ff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 

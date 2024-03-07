@@ -1,13 +1,29 @@
 package com.example.hangman.model.dto;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class UserRegistrationDTO {
+    @NotNull(message = "cannot be empty!")
+    @Size(min = 2, max = 20, message = "Size must be between 2 and 20 letters!")
     private String username;
+    @NotNull
+    @Size(min = 6, max = 20)
     private String password;
+    @NotNull
+    @Size(min = 6, max = 20)
     private String confirmPassword;
+    @NotNull
+    @Size(min=2, max = 20)
     private String firstName;
+    @NotNull
+    @Size(min=2, max = 20)
     private String lastName;
+    @Email
     private String email;
+    @NotNull
     private String role;
 
     public UserRegistrationDTO() {

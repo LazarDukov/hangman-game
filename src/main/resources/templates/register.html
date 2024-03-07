@@ -20,7 +20,13 @@
               th:object="${register}">
             <tr>
                 <th><label for="username">Username:</label></th>
-                <th><input type="text" id="username" name="username" required></th>
+
+                <th><input type="text" id="username" name="username" th:errorclass="'is-invalid alert-danger'" required><br>
+                    <small th:if="${#fields.hasErrors('username')}"
+                           th:errorclass="errors"
+                           th:errors="*{username}"
+                           class="text-danger"></small>
+                </th>
             </tr>
             <tr>
                 <th><label for="password">Password:</label></th>

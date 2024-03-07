@@ -199,6 +199,10 @@ border-color: white;
     cursor: pointer;
 }
 
+.text-danger {
+    color: red;
+}
+
 
 @media (max-width: 782px) {
     .container {

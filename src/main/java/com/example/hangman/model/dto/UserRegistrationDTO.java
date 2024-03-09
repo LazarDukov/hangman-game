@@ -1,29 +1,29 @@
 package com.example.hangman.model.dto;
 
 
+import com.example.hangman.util.validation.PasswordMatchValidatorInterface;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+@PasswordMatchValidatorInterface(password = "password", confirmPassword = "confirmPassword")
 public class UserRegistrationDTO {
-    @NotNull(message = "cannot be empty!")
-    @Size(min = 2, max = 20, message = "Size must be between 2 and 20 letters!")
+    @NotNull(message = "This field cannot be empty!")
+    @Size(min = 2, max = 20, message = "Size must be between 2 and 20 symbols!")
     private String username;
-    @NotNull
-    @Size(min = 6, max = 20)
+    @NotNull(message = "This field cannot be empty!")
+    @Size(min = 6, max = 20, message = "Password should be between 6 and 20 symbols!")
     private String password;
-    @NotNull
-    @Size(min = 6, max = 20)
     private String confirmPassword;
-    @NotNull
-    @Size(min=2, max = 20)
+    @NotNull(message = "This field cannot be empty!")
+    @Size(min = 2, max = 20, message = "First name should be between 2 and 20 symbols!")
     private String firstName;
-    @NotNull
-    @Size(min=2, max = 20)
+    @NotNull(message = "This field cannot be empty!")
+    @Size(min=2, max = 20,  message = "Last name should be between 2 and 20 symbols!")
     private String lastName;
     @Email
+    @NotNull(message = "This field cannot be empty!")
     private String email;
-    @NotNull
+    @NotNull(message = "You should choose an option!")
     private String role;
 
     public UserRegistrationDTO() {

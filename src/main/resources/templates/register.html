@@ -14,14 +14,14 @@
     <body class="index">
     <h1 class="register-form-h1">Registration Form</h1>
     <table class="register-table">
-        <form id="registrationForm"
+        <form autocomplete="off" id="registrationForm"
               th:method="post"
               th:action="@{/register}"
               th:object="${register}">
             <tr>
                 <th><label for="username">Username:</label></th>
 
-                <th><input type="text" id="username" name="username" th:errorclass="'is-invalid alert-danger'" required><br>
+                <th><input autocomplete="false  " type="text" id="username" name="username" th:errorclass="'is-invalid alert-danger'"><br>
                     <small th:if="${#fields.hasErrors('username')}"
                            th:errorclass="errors"
                            th:errors="*{username}"
@@ -30,30 +30,63 @@
             </tr>
             <tr>
                 <th><label for="password">Password:</label></th>
-                <th><input type="password" id="password" name="password" required></th>
+                <th><input type="password" id="password" name="password"><br>
+                    <small th:if="${#fields.hasErrors('password')}"
+                           th:errorclass="errors"
+                           th:errors="*{password}"
+                           class="text-danger"></small>
+                </th>
             </tr>
             <tr>
                 <th><label for="confirmPassword">Confirm Password:</label></th>
-                <th><input type="password" id="confirmPassword" name="confirmPassword" required></th>
+                <th><input type="password" id="confirmPassword" name="confirmPassword"><br>
+                    <small th:if="${#fields.hasErrors('confirmPassword')}"
+                           th:errorclass="errors"
+                           th:errors="*{confirmPassword}"
+                           class="text-danger"></small>
+                </th>
             </tr>
             <tr>
                 <th><label for="firstName">First Name:</label></th>
-                <th><input type="text" id="firstName" name="firstName" required></th>
+                <th><input type="text" id="firstName" name="firstName"><br>
+                    <small th:if="${#fields.hasErrors('firstName')}"
+                           th:errorclass="errors"
+                           th:errors="*{firstName}"
+                           class="text-danger"></small>
+
+                </th>
             </tr>
             <tr>
                 <th><label for="lastName">Last Name:</label></th>
-                <th><input type="text" id="lastName" name="lastName" required></th>
+                <th><input type="text" id="lastName" name="lastName"><br>
+                    <small th:if="${#fields.hasErrors('lastName')}"
+                           th:errorclass="errors"
+                           th:errors="*{lastName}"
+                           class="text-danger"></small>
+
+                </th>
             </tr>
             <tr>
                 <th><label for="email">Email:</label></th>
-                <th><input type="email" id="email" name="email" required></th>
+                <th><input type="email" id="email" name="email"><br>
+                    <small th:if="${#fields.hasErrors('email')}"
+                           th:errorclass="errors"
+                           th:errors="*{email}"
+                           class="text-danger"></small>
+                </th>
             </tr>
             <tr>
                 <th><label for="role">Role:</label></th>
-                <th><select id="role" name="role" required>
+                <th><select id="role" name="role">
+                    <option value="">-</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
-                </select></th>
+                </select><br>
+                    <small th:if="${#fields.hasErrors('role')}"
+                           th:errorclass="errors"
+                           th:errors="*{role}"
+                           class="text-danger"></small>
+                </th>
             </tr>
             <tr>
                 <th>

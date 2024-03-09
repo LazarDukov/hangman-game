@@ -23,9 +23,6 @@ public class UserRegistrationDTO {
     @Email
     @NotNull(message = "This field cannot be empty!")
     private String email;
-    @NotNull(message = "You should choose an option!")
-    private String role;
-
     public UserRegistrationDTO() {
     }
 
@@ -83,12 +80,5 @@ public class UserRegistrationDTO {
         return this;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public UserRegistrationDTO setRole(String role) {
-        this.role = role;
-        return this;
-    }
 }

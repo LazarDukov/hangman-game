@@ -76,19 +76,6 @@
                 </th>
             </tr>
             <tr>
-                <th><label for="role">Role:</label></th>
-                <th><select id="role" name="role">
-                    <option value="">-</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select><br>
-                    <small th:if="${#fields.hasErrors('role')}"
-                           th:errorclass="errors"
-                           th:errors="*{role}"
-                           class="text-danger"></small>
-                </th>
-            </tr>
-            <tr>
                 <th>
                     <button class="register-button" type="submit">Register</button>
                 </th>

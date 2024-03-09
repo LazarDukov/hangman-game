@@ -11,19 +11,33 @@
     <div th:replace="~{fragments/navbar :: navbar}">
         Navbar
     </div>
-    <body>
-    <h1>Login Form</h1>
-    <form th:method="POST"
-          th:action="@{/login}">
-        <label for="username">Username:</label>
-        <input th:value="${username}" type="text" id="username" name="username" required>
+    <body class="index">
+    <h1 class="login-form-h1">Login Form</h1>
+    <table class="login-table">
+        <form th:method="POST"
+              th:action="@{/login}">
+            <tr>
+                <th><label for="username">Username:</label></th>
+                <th><input th:value="${username}" type="text" id="username" name="username" required></th>
+            </tr>
+            <tr>
+                <th><label for="password">Password:</label></th>
+                <th><input th:value="${password}" type="password" id="password" name="password" required>
+                    <br>
+                    <small class="text-danger" th:if="${bad_credentials}">Invalid username or password!</small>
+                </th>
 
-        <label for="password">Password:</label>
-        <input th:value="${password}" type="password" id="password" name="password" required>
 
-        <p class="errors alert alert-danger" th:if="${bad_credentials}">Invalid username or password.</p>
-        <button type="submit" value="Login">Login</button>
-    </form>
+            </tr>
+
+
+            <tr>
+                <th>
+                    <button class="login-button" type="submit" value="Login">Login</button>
+                </th>
+            </tr>
+        </form>
+    </table>
     </body>
 </header>
 </html>

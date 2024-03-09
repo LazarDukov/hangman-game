@@ -21,7 +21,7 @@
             <tr>
                 <th><label for="username">Username:</label></th>
 
-                <th><input autocomplete="false" type="text" id="username" name="username" th:errorclass="'is-invalid alert-danger'"><br>
+                <th><input autocomplete="false  " type="text" id="username" name="username" th:errorclass="'is-invalid alert-danger'"><br>
                     <small th:if="${#fields.hasErrors('username')}"
                            th:errorclass="errors"
                            th:errors="*{username}"
@@ -72,19 +72,6 @@
                     <small th:if="${#fields.hasErrors('email')}"
                            th:errorclass="errors"
                            th:errors="*{email}"
-                           class="text-danger"></small>
-                </th>
-            </tr>
-            <tr>
-                <th><label for="role">Role:</label></th>
-                <th><select id="role" name="role">
-                    <option value="">-</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select><br>
-                    <small th:if="${#fields.hasErrors('role')}"
-                           th:errorclass="errors"
-                           th:errors="*{role}"
                            class="text-danger"></small>
                 </th>
             </tr>

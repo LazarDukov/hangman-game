@@ -38,4 +38,18 @@ public class UserRegistrationService {
         newUser.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
         userRepository.save(newUser);
     }
+
+    @Transactional
+    public void addAdmin(@Valid UserRegistrationDTO userRegistrationDTO) {
+        User newAdmin = new User();
+        newAdmin.setUsername(userRegistrationDTO.getUsername())
+                .setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()))
+                .setFirstName(userRegistrationDTO.getFirstName())
+                .setLastName(userRegistrationDTO.getLastName())
+                .setEmail(userRegistrationDTO.getEmail())
+                .setRoles(new ArrayList<>());
+        newAdmin.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
+        userRepository.save(newAdmin);
+
+    }
 }

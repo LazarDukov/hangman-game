@@ -118,7 +118,7 @@ body {
     padding-left: 500px;
     color: white;
 }
-.index .register-form-h1, .login-form-h1 {
+.index .register-form-h1, .login-form-h1, .add-admin-h1 {
     font-size: 40px;
     padding-left: 400px;
     color: white;
@@ -128,7 +128,7 @@ body {
     font-size: 30px;
     text-align: center;
     width: 1100px;
-    height: 300px;
+    height: 100px;
 
     color: white;
 }
@@ -136,23 +136,24 @@ body {
 .index h3 {
     font-size: 40px;
     padding-left: 350px;
+    padding-top: 100px;
     color: white;
 }
 
-.index .register-table label, .login-table label {
+.index .register-table label, .login-table label, .add-admin-table label {
     position: center;
     font-size: 30px;
     color: white;
 }
 
-.index .register-table input, select, .login-table input {
+.index .register-table input, .login-table input, .add-admin-table input {
 border-color: white;
     font-size: 25px;
     color: white;
     background-color: #a6f6ff;
 }
 
-.register-button, .login-button {
+.register-button, .login-button, .add-admin-button {
     margin-left: 500px;
     font-size: 40px;
     color: white;

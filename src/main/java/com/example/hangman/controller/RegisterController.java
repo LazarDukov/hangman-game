@@ -40,4 +40,22 @@ public class RegisterController {
         userRegistrationService.registerNewUser(userRegistrationDTO);
         return "redirect:/login";
     }
+
+    @GetMapping("/add-admin")
+    private String addAdmin() {
+        return "add-admin";
+    }
+
+    @PostMapping("/add-admin")
+    private String postAddAdmin(@Valid UserRegistrationDTO userRegistrationDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("register", userRegistrationDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.register", bindingResult);
+            return "redirect:/register";
+        }
+
+        userRegistrationService.addAdmin(userRegistrationDTO);
+        return "redirect:/";
+
+    }
 }

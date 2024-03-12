@@ -42,6 +42,6 @@ public class WordService {
     }
 
     private Category findCategory(String categoryOfNewWord) {
-        return categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(categoryOfNewWord     ));
+        return categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(categoryOfNewWord));
     }
 }

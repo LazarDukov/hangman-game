@@ -47,14 +47,22 @@ public class PlayController {
 
     @GetMapping("/play")
     private String getWordPage(Model model, @RequestParam String difficulty, @RequestParam String category) {
-        Difficulty choosenDifficulty = difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficulty));
-        Category choosenCategory = categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(category));
-        List<Word> secretWords = playService.getSecretWords(choosenDifficulty, choosenCategory);
-        String word = playService.secretWord(secretWords).getWord();
-        wordSession.setWord(word);
-        wordSession.setDifficulty(choosenDifficulty);
-        wordSession.setCategory(choosenCategory);
-        model.addAttribute("currentWord", word);
+        Difficulty chosenDifficulty = difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficulty));
+        Category chosenCategory = categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(category));
+        List<Word> secretWords = playService.getSecretWords(chosenDifficulty, chosenCategory);
+
+        // TODO: should create func for this case!
+
+        if (secretWords.size() == 0) {
+            throw new NullPointerException("Not found word with this options!");
+        }
+        Word word = playService.secretWord(secretWords);
+       // String word = playService.secretWord(secretWords).getWord();
+        wordSession.setWord(word.getWord());
+        wordSession.setDifficulty(chosenDifficulty);
+        wordSession.setCategory(chosenCategory);
+        model.addAttribute("currentWord", word.getWord());
+        model.addAttribute("descriptionOfWord", word.getDescription());
         return "play";
     }
 

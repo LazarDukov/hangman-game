@@ -1,7 +1,9 @@
 package com.example.hangman.service;
 
 import com.example.hangman.model.entity.User;
+import com.example.hangman.model.entity.Word;
 import com.example.hangman.repository.UserRepository;
+import com.example.hangman.repository.WordRepository;
 import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,13 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final WordRepository wordRepository;
 
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, WordRepository wordRepository) {
         this.userRepository = userRepository;
+        this.wordRepository = wordRepository;
     }
 
     private User getLoggedUser(String username) {
@@ -41,6 +45,15 @@ public class UserService {
 
     public List<User> getRanking() {
         return userRepository.findAllByOrderByPointsDesc();
+
+    }
+
+    public void addGuessedWord(Principal principal, String word) {
+        User loggedUser = getLoggedUser(principal.getName());
+        Word wordToAdd = wordRepository.findFirstByWord(word);
+        loggedUser.getGuessedWords().add(wordToAdd);
+        userRepository.save(loggedUser);
+
 
     }
 }

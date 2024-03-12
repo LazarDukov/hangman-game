@@ -15,6 +15,7 @@ public class UserController {
     private final UserService userService;
     private final WordSession wordSession;
 
+
     public UserController(UserService userService, WordSession wordSession) {
         this.userService = userService;
         this.wordSession = wordSession;
@@ -24,6 +25,7 @@ public class UserController {
     private String getWonPage(Model model, Principal principal) {
         String secretWord = wordSession.getWord();
         userService.updatePoints(principal, wordSession);
+        userService.addGuessedWord(principal, secretWord);
         model.addAttribute("secretWord", secretWord);
         return "won";
     }

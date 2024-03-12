@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -46,7 +47,7 @@ public class PlayController {
     }
 
     @GetMapping("/play")
-    private String getWordPage(Model model, @RequestParam String difficulty, @RequestParam String category) {
+    private String getWordPage(Principal principal, Model model, @RequestParam String difficulty, @RequestParam String category) {
         Difficulty chosenDifficulty = difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficulty));
         Category chosenCategory = categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(category));
         List<Word> secretWords = playService.getSecretWords(chosenDifficulty, chosenCategory);
@@ -56,8 +57,9 @@ public class PlayController {
         if (secretWords.size() == 0) {
             throw new NullPointerException("Not found word with this options!");
         }
-        Word word = playService.secretWord(secretWords);
-       // String word = playService.secretWord(secretWords).getWord();
+
+        Word word = playService.getSecretWord(principal, chosenDifficulty, chosenCategory);
+
         wordSession.setWord(word.getWord());
         wordSession.setDifficulty(chosenDifficulty);
         wordSession.setCategory(chosenCategory);

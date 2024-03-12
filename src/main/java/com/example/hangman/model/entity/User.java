@@ -2,7 +2,9 @@ package com.example.hangman.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -21,12 +23,19 @@ public class User extends BaseEntity {
     private String email;
     @Column
     private Integer points;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Word> guessedWords;
+
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private List<UserRole> roles;
 
     public User() {
         this.points = 0;
+        this.guessedWords = new HashSet<>();
     }
 
     public String getUsername() {
@@ -80,6 +89,14 @@ public class User extends BaseEntity {
 
     public User setPoints(Integer points) {
         this.points = points;
+        return this;
+    }
+    public Set<Word> getGuessedWords() {
+        return guessedWords;
+    }
+
+    public User setGuessedWords(Set<Word> guessedWords) {
+        this.guessedWords = guessedWords;
         return this;
     }
 

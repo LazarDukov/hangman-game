@@ -12,11 +12,8 @@ import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -46,6 +43,7 @@ public class PlayController {
 
     @GetMapping("/get-word")
     private String getWord() {
+
         return "get-word";
     }
 
@@ -56,17 +54,17 @@ public class PlayController {
         Difficulty chosenDifficulty = difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficulty));
         Category chosenCategory = categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(category));
         List<Word> secretWords = playService.getSecretWords(chosenDifficulty, chosenCategory);
-
-        // TODO: should create func for this case!
-
         if (secretWords.size() == 0) {
-            //  throw new NullPointerException("Not found word with this options!");
+
             String selectionError = "You should choose another combination!";
             model.addAttribute("selectionError", selectionError);
-            return "redirect:/get-word";
+            return "get-word";
         }
 
         Word word = playService.getSecretWord(principal, chosenDifficulty, chosenCategory);
+
+
+
 
         wordSession.setWord(word.getWord());
         wordSession.setDifficulty(chosenDifficulty);

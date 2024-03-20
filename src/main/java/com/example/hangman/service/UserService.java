@@ -63,4 +63,23 @@ public class UserService {
         User loggedUser = getLoggedUser(principal.getName());
         return loggedUser.getGuessedWords().stream().filter(w -> w.getCategory().equals(chosenCategory)).collect(Collectors.toList());
     }
+
+    public boolean checkIsWinner(Principal principal) {
+        User loggedUser = getLoggedUser(principal.getName());
+        List<Word> allWordsInDb = wordRepository.findAll();
+        List<Word> allWordsOfUser = loggedUser.getGuessedWords().stream().toList();
+        return allWordsOfUser.size() == allWordsInDb.size();
+
+    }
+
+    public void restart() {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            wordRepository.findAll().forEach(user.getGuessedWords()::remove);
+            user.setPoints(0);
+            userRepository.save(user);
+        }
+
+
+    }
 }

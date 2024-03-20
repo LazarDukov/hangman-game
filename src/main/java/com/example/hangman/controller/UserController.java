@@ -27,6 +27,12 @@ public class UserController {
         userService.updatePoints(principal, wordSession);
         userService.addGuessedWord(principal, secretWord);
         model.addAttribute("secretWord", secretWord);
+        if (userService.checkIsWinner(principal)) {
+            String winnerMsg = "YOU ARE THE WINNER!";
+            model.addAttribute("youAreWinner", winnerMsg);
+            userService.restart();
+            return "won";
+        }
         return "won";
     }
 

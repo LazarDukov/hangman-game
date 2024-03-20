@@ -31,7 +31,7 @@ public class PlayService {
         Word wordToGet = word;
         while (loggedUser.getGuessedWords().stream().anyMatch(word1 -> word1.getWord().equals(wordToGet.getWord()))) {
             // TODO: should create a logic for this exception!
-            if (loggedUser.getGuessedWords().size()==listOfWords.size()) {
+            if (loggedUser.getGuessedWords().size() == listOfWords.size()) {
                 throw new IllegalStateException("You doesnt have enough words to searching for!");
             }
             word = searchSecretWord(getSecretWords(difficulty, category));
@@ -52,4 +52,7 @@ public class PlayService {
     }
 
 
+    public List<Word> getSecretWordsByCategory(Category category) {
+        return wordRepository.findAllByCategory(category);
+    }
 }

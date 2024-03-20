@@ -8,6 +8,7 @@ import com.example.hangman.model.enums.DifficultyEnum;
 import com.example.hangman.repository.CategoryRepository;
 import com.example.hangman.repository.DifficultyRepository;
 import com.example.hangman.service.PlayService;
+import com.example.hangman.service.UserService;
 import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.List;
 @Controller
 public class PlayController {
     private final PlayService playService;
+    private final UserService userService;
 
     private final WordSession wordSession;
 
@@ -28,8 +30,9 @@ public class PlayController {
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public PlayController(PlayService playService, WordSession wordSession, DifficultyRepository difficultyRepository, CategoryRepository categoryRepository) {
+    public PlayController(PlayService playService, UserService userService, WordSession wordSession, DifficultyRepository difficultyRepository, CategoryRepository categoryRepository) {
         this.playService = playService;
+        this.userService = userService;
         this.wordSession = wordSession;
         this.difficultyRepository = difficultyRepository;
         this.categoryRepository = categoryRepository;
@@ -60,10 +63,16 @@ public class PlayController {
             model.addAttribute("selectionError", selectionError);
             return "get-word";
         }
+        // Check if words in this category are already finished by the logged user
+        List<Word> wordListByCategory = playService.getSecretWordsByCategory(chosenCategory);
+        List<Word> userWordListByCategory = userService.getUserWordsByCategory(principal, chosenCategory);
+        if (wordListByCategory.size() == userWordListByCategory.size()) {
+            String userFinishedCategory = "You revealed all the words by this category!";
+            model.addAttribute("userFinishedCategory", userFinishedCategory);
+            return "get-word";
+        }
 
         Word word = playService.getSecretWord(principal, chosenDifficulty, chosenCategory);
-
-
 
 
         wordSession.setWord(word.getWord());

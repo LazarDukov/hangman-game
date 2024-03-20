@@ -1,5 +1,6 @@
 package com.example.hangman.service;
 
+import com.example.hangman.model.entity.Category;
 import com.example.hangman.model.entity.User;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.repository.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -55,5 +57,10 @@ public class UserService {
         userRepository.save(loggedUser);
 
 
+    }
+
+    public List<Word> getUserWordsByCategory(Principal principal, Category chosenCategory) {
+        User loggedUser = getLoggedUser(principal.getName());
+        return loggedUser.getGuessedWords().stream().filter(w -> w.getCategory().equals(chosenCategory)).collect(Collectors.toList());
     }
 }

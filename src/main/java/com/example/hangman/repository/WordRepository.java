@@ -13,4 +13,6 @@ public interface WordRepository extends JpaRepository<Word, Long> {
     Word findFirstByWord(String word);
 
     List<Word> findAllByDifficultyAndCategory(Difficulty difficultyEnum, Category categoryEnum);
+
+    List<Word> findAllByCategory(Category categoryEnum);
 }

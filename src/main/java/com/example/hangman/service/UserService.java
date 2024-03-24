@@ -2,8 +2,11 @@ package com.example.hangman.service;
 
 import com.example.hangman.model.entity.Category;
 import com.example.hangman.model.entity.User;
+import com.example.hangman.model.entity.UserRole;
 import com.example.hangman.model.entity.Word;
+import com.example.hangman.model.enums.UserRoleEnum;
 import com.example.hangman.repository.UserRepository;
+import com.example.hangman.repository.UserRoleRepository;
 import com.example.hangman.repository.WordRepository;
 import com.example.hangman.util.WordSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +19,15 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+
+    private final UserRoleRepository userRoleRepository;
     private final WordRepository wordRepository;
 
 
     @Autowired
-    public UserService(UserRepository userRepository, WordRepository wordRepository) {
+    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, WordRepository wordRepository) {
         this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
         this.wordRepository = wordRepository;
     }
 
@@ -46,7 +52,8 @@ public class UserService {
     }
 
     public List<User> getRanking() {
-        return userRepository.findAllByOrderByPointsDesc();
+        UserRole userRole = userRoleRepository.findUserRoleByRole(UserRoleEnum.USER);
+        return userRepository.findAllByRolesIsOrderByPointsDesc(userRole);
 
     }
 

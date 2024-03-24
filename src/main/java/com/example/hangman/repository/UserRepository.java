@@ -1,6 +1,7 @@
 package com.example.hangman.repository;
 
 import com.example.hangman.model.entity.User;
+import com.example.hangman.model.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserByUsername(String username);
 
-    List<User> findAllByOrderByPointsDesc();
+    List<User> findAllByRolesIsOrderByPointsDesc(UserRole userRole);
 
     User findFirstByUsername(String username);
 

@@ -12,26 +12,29 @@
         Navbar
     </div>
     <body>
-    <table class="ranking">
-        <thead>
-        <tr>
-            <th>Username:
-            <th>Points:
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user, iterStat : ${ranking}">
-            <td th:text="*{user.username}">
-            <td th:text="*{user.points}">
+    <div>
+        <table class="table-ranking">
+            <thead>
+            <tr>
+                <th>No:</th>
+                <th>Username:</th>
+                <th>Points:</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user, iterStat : ${ranking}">
+                <td th:text="${iterStat.index + 1}"></td>
+                <td th:text="*{user.username}"></td>
+                <td th:text="*{user.points}"></td>
 
 
-        </tr>
+            </tr>
 
-        </tbody>
+            </tbody>
 
 
-    </table>
-
+        </table>
+    </div>
 
     </body>
 </header>

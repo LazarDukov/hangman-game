@@ -24,27 +24,26 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity, SecurityContextRepository securityContextRepository) throws Exception {
-        httpSecurity.
-                // defines which pages will be authorized
-                        authorizeHttpRequests().
-                // allow access to all static files (images, CSS, js)
-                        requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
-                requestMatchers("/", "/register", "/login", "/play", "/login-error", "/get-word", "/won", "/lost", "/ranking").permitAll().
+        httpSecurity.csrf().disable().
+                authorizeHttpRequests().
+                requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
+                requestMatchers("/", "/register", "/login", "/play",
+                        "/login-error", "/error", "/get-word", "/won", "/lost", "/ranking").permitAll().
                 requestMatchers("/add-word").hasRole("ADMIN").
-                // the URL-s below are available for all users - logged in and anonymous
-                        anyRequest().authenticated().
+                anyRequest().authenticated().and().exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/error")).
                 and().
-                // configure login with HTML form
-                        formLogin().
+                formLogin().
                 loginPage("/login").
-                // the names of the username, password input fields in the custom login form
-                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                 passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-                // where do we go after login
-//              //use true argument if you always want to go there, otherwise go to previous page
-        defaultSuccessUrl("/", true).//use true argument if you always want to go there, otherwise go to previous page
-                failureForwardUrl("/login-error").
-                and().logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true).and().
+                defaultSuccessUrl("/", true).
+
+                and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID").
+
+                and().
                 securityContext().
                 securityContextRepository(securityContextRepository);
 

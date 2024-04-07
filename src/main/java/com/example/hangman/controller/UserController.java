@@ -43,4 +43,11 @@ public class UserController {
         return "ranking";
     }
 
+    @GetMapping("/my-profile")
+    private String getMyProfilePage(Principal principal, Model model) {
+        User user = userService.getCurrentUser(principal);
+        model.addAttribute("currentUser", user);
+        return "/my-profile";
+    }
+
 }

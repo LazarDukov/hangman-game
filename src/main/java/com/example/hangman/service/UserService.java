@@ -89,4 +89,9 @@ public class UserService {
 
 
     }
+
+    public User getCurrentUser(Principal principal) {
+        return userRepository.findUserByUsername(principal.getName()).orElse(null);
+
+    }
 }

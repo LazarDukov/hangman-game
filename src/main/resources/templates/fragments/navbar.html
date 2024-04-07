@@ -70,22 +70,24 @@
 
             <a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a>
             <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
-            <label class="welcome" sec:authorize="isAuthenticated()">Welcome,
-                <th:block
-                        sec:authentication="name"></th:block>
-            </label>
-            <a th:href="@{/}">Home</a>
+            <form>
+                <label class="welcome" style="color: white; text-decoration: underline" sec:authorize="isAuthenticated()">Welcome,
+                    <th:block
+                            sec:authentication="name"></th:block>
+                </label>
+            </form>
+            <a sec:authorize="isAuthenticated()" th:href="@{/my-profile}">My profile</a>
 
-
-            <a sec:authorize="hasRole('USER')" th:href="@{/get-word}">Play</a>
+            <!--            <a sec:authorize="hasRole('USER')" th:href="@{/get-word}">Play</a>-->
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-word}">Add word</a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-admin}">Add admin</a>
-            <a th:href="@{/ranking}">Ranking</a>
             <a>
                 <form sec:authorize="isAuthenticated()" th:method="post" th:action="@{/logout}" th:href="@{/}">
                     <input type="submit" name="" value="Logout">
                 </form>
             </a>
+            <a style="position: absolute; left: 800px" th:href="@{/}">Home</a>
+            <a style="position: absolute; left: 900px" th:href="@{/ranking}">Ranking</a>
         </nav>
     </div>
 </header>

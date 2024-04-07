@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body class="index">
+
+    <h1 class="register-form-h1">My profile:</h1>
+    <br>
+    <div>
+        <table class="my-profile" th:object="${currentUser}" th:method="get">
+
+            <tr>
+                <th>Username:</th>
+                <td th:text="${currentUser.getUsername()}"></td>
+            </tr>
+
+            <tr>
+                <th>First name:</th>
+                <td th:text="${currentUser.getFirstName()}"></td>
+            </tr>
+
+            <tr>
+                <th>Last name:</th>
+                <td th:text="${currentUser.getLastName()}"></td>
+            </tr>
+
+            <tr>
+                <th>Email:</th>
+                <td th:text="${currentUser.getEmail()}"></td>
+            </tr>
+            <tr>
+                <th>Points:</th>
+                <td th:text="${currentUser.getPoints()}"></td>
+            </tr>
+
+
+        </table>
+    </div>
+    </body>
+    <a class="register-button" th:href="@{/edit-profile}">Edit profile</a>
+</header>
+</html>

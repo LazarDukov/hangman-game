@@ -84,6 +84,7 @@ body {
     color: black;
 }
 
+
 .game-box .guesses-text b {
     color: red;
 }
@@ -125,7 +126,7 @@ body {
     color: white;
 }
 
-.index .register-form-h1, .login-form-h1, .add-admin-h1 {
+.index .register-form-h1, .login-form-h1, .add-admin-h1, .my-profile-h1 {
     font-size: 40px;
     padding-left: 400px;
     color: white;
@@ -171,7 +172,7 @@ body {
     cursor: pointer;
 }
 
-.table-ranking, .my-profile {
+.table-ranking, .table-my-profile {
     margin-left: 100px;
     font-size: 20px;
     color: white;
@@ -181,7 +182,7 @@ body {
 
 }
 
-.table-ranking td, .table-ranking th, .my-profile td, .my-profile th {
+.table-ranking td, .table-ranking th, .table-my-profile td, .table-my-profile th {
     border: 3px solid #65bafa;
     text-align: center;
 

@@ -13,10 +13,10 @@
     </div>
     <body class="index">
 
-    <h1 class="register-form-h1">My profile:</h1>
+    <h1 class="my-profile-h1">My profile:</h1>
     <br>
     <div>
-        <table class="my-profile" th:object="${currentUser}" th:method="get">
+        <table class="table-my-profile" th:object="${currentUser}" th:method="get">
 
             <tr>
                 <th>Username:</th>
@@ -45,7 +45,16 @@
 
         </table>
     </div>
+    <a style="position:relative; margin-left: 500px;
+    margin-top: 40px;
+    font-size: 40px;
+    color: white; border-bottom: none; text-decoration: none;
+background-color: #a6f6ff;" th:href="@{/edit-profile}">Edit profile</a>
+
     </body>
-    <a class="register-button" th:href="@{/edit-profile}">Edit profile</a>
+
+    <div th:replace="~{fragments/footer :: footer}">
+        footer
+    </div>
 </header>
 </html>

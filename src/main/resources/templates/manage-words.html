@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments/navbar::head}"></head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,19 +13,21 @@
     </div>
     <body>
     <div>
-        <table class="table-ranking">
+        <table class="table-all-words">
             <thead>
             <tr>
-                <th>No:</th>
-                <th>Username:</th>
-                <th>Points:</th>
+                <th>Word</th>
+                <th>Difficulty</th>
+                <th>Category</th>
+                <th>Description</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user, iterStat : ${ranking}">
-                <td th:text="${iterStat.index + 1}"></td>
-                <td th:text="*{user.username}"></td>
-                <td th:text="*{user.points}"></td>
+            <tr th:each="word, iterStat : ${allWords}">
+                <td th:text="${word.word}"></td>
+                <td th:text="*{word.difficulty.difficultyEnum}"></td>
+                <td th:text="*{word.category.categoryEnum}"></td>
+                <td th:text="*{word.getDescription()}"></td>
 
 
             </tr>

@@ -2,6 +2,7 @@ package com.example.hangman.controller;
 
 import com.example.hangman.model.entity.Category;
 import com.example.hangman.model.entity.Difficulty;
+import com.example.hangman.model.entity.User;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;

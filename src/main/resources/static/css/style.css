@@ -172,7 +172,7 @@ body {
     cursor: pointer;
 }
 
-.table-ranking, .table-my-profile {
+.table-ranking, .table-my-profile, .table-all-words {
     margin-left: 100px;
     font-size: 20px;
     color: white;
@@ -182,7 +182,7 @@ body {
 
 }
 
-.table-ranking td, .table-ranking th, .table-my-profile td, .table-my-profile th {
+.table-ranking td, .table-ranking th, .table-my-profile td, .table-my-profile th, .table-all-words th, .table-all-words td {
     border: 3px solid #65bafa;
     text-align: center;
 

@@ -13,6 +13,8 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WordService {
     private final WordRepository wordRepository;
@@ -43,5 +45,9 @@ public class WordService {
 
     private Category findCategory(String categoryOfNewWord) {
         return categoryRepository.findCategoryByCategoryEnum(CategoryEnum.valueOf(categoryOfNewWord));
+    }
+
+    public List<Word> getAllWords() {
+        return this.wordRepository.findAll();
     }
 }

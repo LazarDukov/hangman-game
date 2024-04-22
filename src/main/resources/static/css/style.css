@@ -135,8 +135,8 @@ body {
 .index h2 {
     font-size: 30px;
     text-align: center;
-    width: 1100px;
-    height: 100px;
+    width: 1150px;
+    height: 30px;
 
     color: white;
 }
@@ -182,10 +182,16 @@ body {
 
 }
 
-.table-ranking td, .table-ranking th, .table-my-profile td, .table-my-profile th, .table-all-words th, .table-all-words td {
+.table-ranking td, .table-my-profile td, .table-all-words td {
     border: 3px solid #65bafa;
     text-align: center;
 
+}
+
+.table-ranking th, .table-my-profile th, .table-all-words th {
+    border: 3px solid #65bafa;
+    text-align: center;
+    font-size: 30px;
 }
 
 

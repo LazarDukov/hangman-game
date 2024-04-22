@@ -14,8 +14,8 @@
     <body class="index">
 
     <h1>Hello!</h1><br>
-    <h2>Welcome to the hangman game!</h2><br>
-    <a sec:authorize="hasRole('USER')" th:href="@{/get-word}">Play</a>
+    <h2>Welcome to the hangman game!</h2>
+    <h2><a sec:authorize="hasRole('USER')" th:href="@{/get-word}">Play</a></h2>
     <h2 sec:authorize="!isAuthenticated()"> Here you can test your knowledge of the words which are surround us constantly!
         If you want start playing now, you should register your account first from
         <a id="register" th:href="@{/register}">here</a> <br>
@@ -23,9 +23,9 @@
         <a id="login" th:href="@{/login}">here</a>!</h2>
 
     <h2 sec:authorize="hasRole('ADMIN')">You are an admin and here you can configure whole application.<br>
-        You can make changes on whole hangman game, to add and remove words and admins.</h2>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/manage-words}">manage words</a>
-    <a sec:authorize="hasRole('ADMIN')" th:href="@{/manage-admins}">manage admins</a>
+        You can make changes on whole hangman game, to add and remove words and admins.</h2><br><br><br>
+    <h2><a sec:authorize="hasRole('ADMIN')" th:href="@{/manage-words}">manage words</a></h2>
+    <h2><a sec:authorize="hasRole('ADMIN')" th:href="@{/manage-admins}">manage admins</a></h2>
 
     <h3>Good luck and have fun!</h3>
 

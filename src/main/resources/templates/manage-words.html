@@ -12,6 +12,7 @@
         Navbar
     </div>
     <body>
+    <h2><a style="position: relative; padding-left: 100px" th:href="@{/add-word}">Add word</a></h2><br>
     <div>
         <table class="table-all-words">
             <thead>
@@ -28,6 +29,8 @@
                 <td th:text="*{word.difficulty.difficultyEnum}"></td>
                 <td th:text="*{word.category.categoryEnum}"></td>
                 <td th:text="*{word.getDescription()}"></td>
+                <td><a th:href="@{/home}">change</a></td>
+                <td><a th:href="@{/home}">delete</a></td>
 
 
             </tr>

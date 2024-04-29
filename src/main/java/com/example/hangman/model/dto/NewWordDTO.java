@@ -2,6 +2,7 @@ package com.example.hangman.model.dto;
 
 import com.example.hangman.model.entity.Category;
 import com.example.hangman.model.entity.Difficulty;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,10 +13,12 @@ public class NewWordDTO {
     @Size(min = 2, max = 20, message = "Size must be between 2 and 20 symbols!")
     private String word;
     @NotNull(message = "This field cannot be empty!")
-    @Size(min = 2, max = 20, message = "Size must be between 20 and 150 symbols!")
+    @Size(min = 20, max = 150, message = "Size must be between 20 and 150 symbols!")
     private String description;
-
+    @Enumerated
+    @NotNull
     private String category;
+
     private String difficulty;
 
     public NewWordDTO() {

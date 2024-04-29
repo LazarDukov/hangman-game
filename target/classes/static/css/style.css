@@ -126,7 +126,7 @@ body {
     color: white;
 }
 
-.index .register-form-h1, .login-form-h1, .add-admin-h1, .my-profile-h1 {
+.index .register-form-h1, .login-form-h1, .add-admin-h1, .add-word-h1 .my-profile-h1 {
     font-size: 40px;
     padding-left: 400px;
     color: white;
@@ -148,20 +148,20 @@ body {
     color: white;
 }
 
-.index .register-table label, .login-table label, .add-admin-table label {
+.index .register-table label, .login-table label, .add-admin-table label, .add-word-table label {
     position: center;
     font-size: 30px;
     color: white;
 }
 
-.index .register-table input, .login-table input, .add-admin-table input {
+.index .register-table input, .login-table input, .add-admin-table input, .add-word-table input {
     border-color: white;
     font-size: 25px;
     color: white;
     background-color: #a6f6ff;
 }
 
-.register-button, .login-button, .add-admin-button {
+.register-button, .login-button, .add-admin-button, .add-word-button {
     margin-left: 500px;
     font-size: 40px;
     color: white;

@@ -38,36 +38,36 @@
                            class="text-danger"></small>
                 </th>
             </tr>
-            <tr>
-                <th><label for="difficulty">Difficulty:</label></th>
-                <th><select id="difficulty" name="difficulty"><br>
-                    <option value="EMPTY">-</option>
-                    <option value="EASY">easy</option>
-                    <option value="MEDIUM">medium</option>
-                    <option value="HARD">hard</option>
+<!--            <tr>-->
+<!--                <th><label for="difficulty">Difficulty:</label></th>-->
+<!--                <th><select id="difficulty" name="difficulty"><br>-->
+<!--                    <option value="" disabled selected hidden>Choose a difficulty</option>-->
+<!--                    <option value="EASY">easy</option>-->
+<!--                    <option value="MEDIUM">medium</option>-->
+<!--                    <option value="HARD">hard</option>-->
+<!--                </select><br>-->
+<!--                    <small th:if="${#fields.hasErrors('difficulty')}"-->
+<!--                           th:errorclass="errors"-->
+<!--                           th:errors="*{difficulty}"-->
+<!--                           class="text-danger">-->
+<!--                    </small><br>-->
 
-                    <small th:if="${#fields.hasErrors('difficulty')}"
-                           th:errorclass="errors"
-                           th:errors="*{difficulty}"
-                           class="text-danger">
-                    </small>
-                </select>
-                </th>
-            </tr>
+<!--                </th>-->
+<!--            </tr>-->
             <tr>
                 <th><label for="category">Category:</label></th>
                 <th><select id="category" name="category"><br>
-                    <option value="EMPTY">-</option>
+                    <option value="" disabled selected hidden>Choose a category</option>
                     <option value="HISTORY">history</option>
                     <option value="GEOGRAPHY">geography</option>
                     <option value="ANIMALS">animals</option>
-
+                </select><br>
                     <small th:if="${#fields.hasErrors('category')}"
                            th:errorclass="errors"
                            th:errors="*{category}"
                            class="text-danger">
-                    </small>
-                </select>
+                    </small><br>
+
                 </th>
             </tr>
 

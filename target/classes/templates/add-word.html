@@ -7,37 +7,80 @@
 <title>Hangman</title>
 <link rel="stylesheet" th:href="@{/css/style.css}"/>
 
-<body>
-<form id="newWordForm"
-      th:method="post"
-      th:action="@{/add-word}"
-      th:object="${newWordDTO}">
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body class="index">
+    <h1 class="add-word-h1">Add admin</h1>
+    <table class="add-word-table">
+        <form autocomplete="off" id="addWord"
+              th:method="post"
+              th:action="@{/add-word}"
+              th:object="${newWordDTO}">
+            <tr>
+                <th><label for="word">New word:</label></th>
 
-    <label for="word">New word:</label>
-    <input type="text" id="word" name="word" required>
+                <th><input autocomplete="false" type="text" id="word" name="word"
+                           th:errorclass="'is-invalid alert-danger'"><br>
+                    <small th:if="${#fields.hasErrors('word')}"
+                           th:errorclass="errors"
+                           th:errors="*{word}"
+                           class="text-danger"></small>
+                </th>
+            </tr>
+            <tr>
+                <th><label for="description">Description:</label></th>
+                <th><input type="text" id="description" name="description"><br>
+                    <small th:if="${#fields.hasErrors('description')}"
+                           th:errorclass="errors"
+                           th:errors="*{description}"
+                           class="text-danger"></small>
+                </th>
+            </tr>
+<!--            <tr>-->
+<!--                <th><label for="difficulty">Difficulty:</label></th>-->
+<!--                <th><select id="difficulty" name="difficulty"><br>-->
+<!--                    <option value="" disabled selected hidden>Choose a difficulty</option>-->
+<!--                    <option value="EASY">easy</option>-->
+<!--                    <option value="MEDIUM">medium</option>-->
+<!--                    <option value="HARD">hard</option>-->
+<!--                </select><br>-->
+<!--                    <small th:if="${#fields.hasErrors('difficulty')}"-->
+<!--                           th:errorclass="errors"-->
+<!--                           th:errors="*{difficulty}"-->
+<!--                           class="text-danger">-->
+<!--                    </small><br>-->
 
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" required>
+<!--                </th>-->
+<!--            </tr>-->
+            <tr>
+                <th><label for="category">Category:</label></th>
+                <th><select id="category" name="category"><br>
+                    <option value="" disabled selected hidden>Choose a category</option>
+                    <option value="HISTORY">history</option>
+                    <option value="GEOGRAPHY">geography</option>
+                    <option value="ANIMALS">animals</option>
+                </select><br>
+                    <small th:if="${#fields.hasErrors('category')}"
+                           th:errorclass="errors"
+                           th:errors="*{category}"
+                           class="text-danger">
+                    </small><br>
 
-    <label for="category">Category:</label>
-    <select id="category" name="category" required>
-        <option value="HISTORY">history</option>
-        <option value="GEOGRAPHY">geography</option>
-        <option value="ANIMALS">animals</option>
-    </select>
+                </th>
+            </tr>
 
+            <tr>
+                <th>
+                    <button class="add-word-button" type="submit">Add word</button>
+                </th>
+            </tr>
+    </table>
+    </body>
 
-    <label for="difficulty">Difficulty:</label>
-    <select id="difficulty" name="difficulty" required>
-        <option value="EASY">easy</option>
-        <option value="MEDIUM">medium</option>
-        <option value="HARD">hard</option>
-    </select>
-
-    <button type="submit">Add new word</button>
-</form>
-</body>
-<div th:replace="~{fragments/footer :: footer}">
-    footer
-</div>
+    <div th:replace="~{fragments/footer :: footer}">
+        footer
+    </div>
+</header>
 </html>

@@ -34,13 +34,21 @@ public class WordService {
         Word newWord = new Word();
         newWord.setWord(newWordDTO.getWord());
         newWord.setDescription(newWordDTO.getDescription());
-        newWord.setDifficulty(findDifficulty(newWordDTO.getDifficulty()));
+        newWord.setDifficulty(findDifficulty(newWordDTO.getWord()));
         newWord.setCategory(findCategory(newWordDTO.getCategory()));
         wordRepository.save(newWord);
     }
 
-    private Difficulty findDifficulty(String difficultyOfNewWord) {
-        return difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.valueOf(difficultyOfNewWord));
+    private Difficulty findDifficulty(String newWord) {
+        int wordLength = newWord.length();
+        if (wordLength <= 5) {
+            return difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY);
+        } else if (wordLength > 5 && wordLength <= 10) {
+            return difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.MEDIUM);
+        } else {
+            return difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.HARD);
+        }
+
     }
 
     private Category findCategory(String categoryOfNewWord) {
@@ -50,4 +58,6 @@ public class WordService {
     public List<Word> getAllWords() {
         return this.wordRepository.findAll();
     }
+
+
 }

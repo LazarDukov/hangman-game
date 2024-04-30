@@ -59,5 +59,13 @@ public class WordService {
         return this.wordRepository.findAll();
     }
 
+    public Word getWordById(Long id) {
+        return wordRepository.findWordById(id);
+    }
+
+    public void deleteWord(Long id) {
+        wordRepository.deleteById(id);
+
+    }
 
 }

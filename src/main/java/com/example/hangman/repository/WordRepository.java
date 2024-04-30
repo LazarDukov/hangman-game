@@ -12,6 +12,8 @@ import java.util.List;
 public interface WordRepository extends JpaRepository<Word, Long> {
     Word findFirstByWord(String word);
 
+    Word findWordById(Long id);
+
     List<Word> findAllByDifficultyAndCategory(Difficulty difficultyEnum, Category categoryEnum);
 
     List<Word> findAllByCategory(Category categoryEnum);

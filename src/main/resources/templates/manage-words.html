@@ -30,8 +30,7 @@
                 <td th:text="*{word.category.categoryEnum}"></td>
                 <td th:text="*{word.getDescription()}"></td>
                 <td><a th:href="@{/home}">change</a></td>
-                <td><a th:href="@{/home}">delete</a></td>
-
+                <td><a th:href="@{/manage-words/{id}(id=${word.id})}" th:method="get">delete</a></td>
 
             </tr>
 

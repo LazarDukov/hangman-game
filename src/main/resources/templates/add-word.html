@@ -12,7 +12,7 @@
         Navbar
     </div>
     <body class="index">
-    <h1 class="add-word-h1">Add admin</h1>
+    <h1 class="add-word-h1">Add word</h1>
     <table class="add-word-table">
         <form autocomplete="off" id="addWord"
               th:method="post"
@@ -38,22 +38,7 @@
                            class="text-danger"></small>
                 </th>
             </tr>
-<!--            <tr>-->
-<!--                <th><label for="difficulty">Difficulty:</label></th>-->
-<!--                <th><select id="difficulty" name="difficulty"><br>-->
-<!--                    <option value="" disabled selected hidden>Choose a difficulty</option>-->
-<!--                    <option value="EASY">easy</option>-->
-<!--                    <option value="MEDIUM">medium</option>-->
-<!--                    <option value="HARD">hard</option>-->
-<!--                </select><br>-->
-<!--                    <small th:if="${#fields.hasErrors('difficulty')}"-->
-<!--                           th:errorclass="errors"-->
-<!--                           th:errors="*{difficulty}"-->
-<!--                           class="text-danger">-->
-<!--                    </small><br>-->
 
-<!--                </th>-->
-<!--            </tr>-->
             <tr>
                 <th><label for="category">Category:</label></th>
                 <th><select id="category" name="category"><br>

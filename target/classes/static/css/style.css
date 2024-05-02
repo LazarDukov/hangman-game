@@ -172,7 +172,7 @@ body {
     cursor: pointer;
 }
 
-.table-ranking, .table-my-profile, .table-all-words {
+.table-ranking, .table-my-profile, .table-all-words, .table-all-admins {
     margin-left: 100px;
     font-size: 20px;
     color: white;
@@ -182,13 +182,13 @@ body {
 
 }
 
-.table-ranking td, .table-my-profile td, .table-all-words td {
+.table-ranking td, .table-my-profile td, .table-all-words td, .table-all-admins td {
     border: 3px solid #65bafa;
     text-align: center;
 
 }
 
-.table-ranking th, .table-my-profile th, .table-all-words th {
+.table-ranking th, .table-my-profile th, .table-all-words th, .table-all-admins th {
     border: 3px solid #65bafa;
     text-align: center;
     font-size: 30px;

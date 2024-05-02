@@ -1,6 +1,7 @@
 package com.example.hangman.controller;
 
 import com.example.hangman.model.dto.NewWordDTO;
+import com.example.hangman.model.entity.User;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.service.WordService;
 import jakarta.validation.Valid;
@@ -29,6 +30,8 @@ public class WordController {
         return "manage-words";
     }
 
+
+
     @ModelAttribute("newWordDTO")
     public NewWordDTO addNewWordDTO() {
         return new NewWordDTO();
@@ -52,7 +55,7 @@ public class WordController {
 
     @GetMapping("/manage-words/{id}")
     public String deleteWordById(@PathVariable("id") Long id) {
-        // Word word = wordService.getWordById(id);
+
         wordService.deleteWord(id);
         return "redirect:/manage-words";
 

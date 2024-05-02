@@ -78,9 +78,6 @@
             </form>
             <a sec:authorize="isAuthenticated()" th:href="@{/my-profile}">My profile</a>
 
-            <!--            <a sec:authorize="hasRole('USER')" th:href="@{/get-word}">Play</a>-->
-            <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-word}">Add word</a>
-            <a sec:authorize="hasRole('ADMIN')" th:href="@{/add-admin}">Add admin</a>
             <a>
                 <form sec:authorize="isAuthenticated()" th:method="post" th:action="@{/logout}" th:href="@{/}">
                     <input type="submit" name="" value="Logout">

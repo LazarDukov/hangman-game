@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+  <div th:replace="~{fragments/navbar :: navbar}">
+    Navbar
+  </div>
+  <body>
+  <h2><a style="position: relative; padding-left: 100px" th:href="@{/add-admin}">Add admin</a></h2><br>
+  <div>
+    <table class="table-all-admins">
+      <thead>
+      <tr>
+        <th>Admin username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="admin, iterStat : ${allAdmins}">
+        <td th:text="${admin.username}"></td>
+        <td th:text="*{admin.firstName}"></td>
+        <td th:text="*{admin.lastName}"></td>
+        <td th:text="*{admin.email}"></td>
+        <td><a th:href="@{/manage-admins/{id}(id=${admin.id})}" th:method="get">remove admin</a></td>
+
+      </tr>
+
+      </tbody>
+
+
+    </table>
+  </div>
+
+  </body>
+  <div th:replace="~{fragments/footer :: footer}">
+    footer
+  </div>
+</header>
+</html>

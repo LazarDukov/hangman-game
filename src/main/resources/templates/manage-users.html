@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+  <div th:replace="~{fragments/navbar :: navbar}">
+    Navbar
+  </div>
+  <body>
+  <div>
+    <table class="table-all-admins">
+      <thead>
+      <tr>
+        <th>Admin username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user, iterStat : ${allUsers}">
+        <td th:text="${user.username}"></td>
+        <td th:text="*{user.firstName}"></td>
+        <td th:text="*{user.lastName}"></td>
+        <td th:text="*{user.email}"></td>
+        <td><a th:href="@{/manage-users/{id}(id=${user.id})}" th:method="get">change user</a></td>
+<!--        TODO: SHOULD CREATE FUNC FOR CHANGING USER-->
+
+        <td><a th:href="@{/manage-users/{id}(id=${user.id})}" th:method="get">make admin</a></td>
+
+      </tr>
+
+      </tbody>
+
+
+    </table>
+  </div>
+
+  </body>
+  <div th:replace="~{fragments/footer :: footer}">
+    footer
+  </div>
+</header>
+</html>

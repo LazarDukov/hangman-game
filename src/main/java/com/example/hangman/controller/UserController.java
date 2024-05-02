@@ -6,6 +6,7 @@ import com.example.hangman.util.WordSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
 import java.util.List;
@@ -48,6 +49,34 @@ public class UserController {
         User user = userService.getCurrentUser(principal);
         model.addAttribute("currentUser", user);
         return "/my-profile";
+    }
+
+    @GetMapping("/manage-admins")
+    private String manageAdminsPage(Model model) {
+        List<User> allAdmins = userService.getAllAdmins();
+        model.addAttribute("allAdmins", allAdmins);
+        return "manage-admins";
+    }
+
+    @GetMapping("/manage-admins/{id}")
+    private String removeAdmin(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        userService.removeAdmin(user);
+        return "redirect:/manage-admins";
+    }
+
+    @GetMapping("/manage-users")
+    private String manageUsersPage(Model model) {
+        List<User> allUsers = userService.getAllUsersWithoutAdmins();
+        model.addAttribute("allUsers", allUsers);
+        return "manage-users";
+    }
+
+    @GetMapping("/manage-users/{id}")
+    private String makeUserAnAdmin(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        userService.makeUserAnAdmin(user);
+        return "redirect:/manage-users";
     }
 
 }

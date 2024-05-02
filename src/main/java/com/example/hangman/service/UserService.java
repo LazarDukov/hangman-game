@@ -94,4 +94,28 @@ public class UserService {
         return userRepository.findUserByUsername(principal.getName()).orElse(null);
 
     }
+
+    public List<User> getAllAdmins() {
+        return userRepository.findAllByRoles(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    public void removeAdmin(User user) {
+        user.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
+        user.getRoles().remove(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
+        userRepository.save(user);
+    }
+
+    public void makeUserAnAdmin(User user) {
+        user.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
+        user.getRoles().remove(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
+        userRepository.save(user);
+    }
+
+    public List<User> getAllUsersWithoutAdmins() {
+        return userRepository.findAllByRoles(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
+    }
 }

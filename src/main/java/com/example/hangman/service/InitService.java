@@ -48,9 +48,9 @@ public class InitService {
             initUsers();
         }
 
-        if (wordRepository.count() == 0) {
-            initWords();
-        }
+//        if (wordRepository.count() == 0) {
+//            initWords();
+//        }
     }
 
 
@@ -113,23 +113,23 @@ public class InitService {
         difficultyRepository.save(hard);
     }
 
-    private void initWords() {
-        Word tiger = new Word();
-        tiger.setWord("tiger");
-        tiger.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.ANIMALS));
-        tiger.setDescription("An animal which is from the cats family and can run very fast.");
-        tiger.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY));
-
-        Word newYork = new Word();
-        newYork.setWord("new york");
-        newYork.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.GEOGRAPHY));
-        newYork.setDescription("A very big city which is located somewhere in USA.");
-        newYork.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.HARD));
-
-
-        wordRepository.save(tiger);
-        wordRepository.save(newYork);
-    }
+//    private void initWords() {
+//        Word tiger = new Word();
+//        tiger.setWord("tiger");
+//        tiger.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.ANIMALS));
+//        tiger.setDescription("An animal which is from the cats family and can run very fast.");
+//        tiger.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY));
+//
+//        Word newYork = new Word();
+//        newYork.setWord("new york");
+//        newYork.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.GEOGRAPHY));
+//        newYork.setDescription("A very big city which is located somewhere in USA.");
+//        newYork.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.HARD));
+//
+//
+//        wordRepository.save(tiger);
+//        wordRepository.save(newYork);
+//    }
 
 
 }

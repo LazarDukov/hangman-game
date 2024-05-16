@@ -146,7 +146,7 @@ if exist %WRAPPER_JAR% (
 		"$webclient.Credentials = new-object System.Net.NetworkCredential('%MVNW_USERNAME%', '%MVNW_PASSWORD%');"^
 		"}"^
 		"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $webclient.DownloadFile('%WRAPPER_URL%', '%WRAPPER_JAR%')"^
-		"}"
+		"}"^
     if "%MVNW_VERBOSE%" == "true" (
         echo Finished downloading %WRAPPER_JAR%
     )
@@ -167,7 +167,6 @@ IF NOT %WRAPPER_SHA_256_SUM%=="" (
        "  Write-Output 'If you updated your Maven version, you need to update the specified wrapperSha256Sum property.';"^
        "  exit 1;"^
        "}"^
-       "}"
     if ERRORLEVEL 1 goto error
 )
 

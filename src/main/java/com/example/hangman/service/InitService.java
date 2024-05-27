@@ -12,56 +12,75 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+
 @Service
 public class InitService {
     private final UserRoleRepository userRoleRepository;
-    private final WordRepository wordRepository;
     private final CategoryRepository categoryRepository;
-    private final DifficultyRepository difficultyRepository;
 
     private final UserRepository userRepository;
+    private final DifficultyRepository difficultyRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public InitService(UserRoleRepository userRoleRepository, WordRepository wordRepository, CategoryRepository categoryRepository, DifficultyRepository difficultyRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public InitService(UserRoleRepository userRoleRepository, CategoryRepository categoryRepository, DifficultyRepository difficultyRepository, CategoryRepository categoryRepository1, UserRepository userRepository, DifficultyRepository difficultyRepository1, PasswordEncoder passwordEncoder) {
         this.userRoleRepository = userRoleRepository;
-        this.wordRepository = wordRepository;
         this.categoryRepository = categoryRepository;
-        this.difficultyRepository = difficultyRepository;
         this.userRepository = userRepository;
+        this.difficultyRepository = difficultyRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @PostConstruct
     public void Init() {
         if (userRoleRepository.count() == 0) {
-            initRoles();
-        }
-        if (categoryRepository.count() == 0) {
             initCategories();
         }
         if (difficultyRepository.count() == 0) {
-            initDifficulties();
+            initDifficulty();
+        }
+        if (userRoleRepository.count() == 0) {
+            initUserRoles();
         }
 
         if (userRepository.count() == 0) {
             initUsers();
         }
 
-//        if (wordRepository.count() == 0) {
-//            initWords();
-//        }
     }
 
+    private void initDifficulty() {
+        Difficulty easy = new Difficulty();
+        easy.setDifficultyEnum(DifficultyEnum.EASY);
+        difficultyRepository.save(easy);
+        Difficulty medium = new Difficulty();
+        medium.setDifficultyEnum(DifficultyEnum.MEDIUM);
+        difficultyRepository.save(medium);
+        Difficulty hard = new Difficulty();
+        hard.setDifficultyEnum(DifficultyEnum.HARD);
+        difficultyRepository.save(hard);
+    }
 
-    private void initRoles() {
-        UserRole user = new UserRole().setRole(UserRoleEnum.USER);
-        UserRole admin = new UserRole().setRole(UserRoleEnum.ADMIN);
+    private void initCategories() {
+        Category history = new Category();
+        history.setCategoryEnum(CategoryEnum.HISTORY);
+        categoryRepository.save(history);
+        Category geography = new Category();
+        geography.setCategoryEnum(CategoryEnum.GEOGRAPHY);
+        categoryRepository.save(geography);
+        Category animals = new Category();
+        animals.setCategoryEnum(CategoryEnum.ANIMALS);
+        categoryRepository.save(animals);
+    }
 
-        userRoleRepository.save(user);
+    private void initUserRoles() {
+        UserRole admin = new UserRole();
+        admin.setRole(UserRoleEnum.ADMIN);
         userRoleRepository.save(admin);
+        UserRole user = new UserRole();
+        user.setRole(UserRoleEnum.USER);
+        userRoleRepository.save(user);
     }
-
 
     private void initUsers() {
         User gamer = new User();
@@ -70,6 +89,7 @@ public class InitService {
         gamer.setFirstName("gamer");
         gamer.setLastName("gamerov");
         gamer.setEmail("gamer@abv.bg");
+
         gamer.setRoles(new ArrayList<>());
         gamer.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.USER));
 
@@ -79,6 +99,7 @@ public class InitService {
         admin.setFirstName("admin");
         admin.setLastName("adminov");
         admin.setEmail("admin@abv.bg");
+
         admin.setRoles(new ArrayList<>());
         admin.getRoles().add(userRoleRepository.findUserRoleByRole(UserRoleEnum.ADMIN));
 
@@ -87,49 +108,6 @@ public class InitService {
 
 
     }
-
-    private void initCategories() {
-        //HISTORY, GEOGRAPHY, ANIMALS;
-        Category history = new Category();
-        history.setCategoryEnum(CategoryEnum.HISTORY);
-        Category geography = new Category();
-        geography.setCategoryEnum(CategoryEnum.GEOGRAPHY);
-        Category animals = new Category();
-        animals.setCategoryEnum(CategoryEnum.ANIMALS);
-        categoryRepository.save(history);
-        categoryRepository.save(geography);
-        categoryRepository.save(animals);
-    }
-
-    private void initDifficulties() {
-        Difficulty easy = new Difficulty();
-        easy.setDifficultyEnum(DifficultyEnum.EASY);
-        Difficulty medium = new Difficulty();
-        medium.setDifficultyEnum(DifficultyEnum.MEDIUM);
-        Difficulty hard = new Difficulty();
-        hard.setDifficultyEnum(DifficultyEnum.HARD);
-        difficultyRepository.save(easy);
-        difficultyRepository.save(medium);
-        difficultyRepository.save(hard);
-    }
-
-//    private void initWords() {
-//        Word tiger = new Word();
-//        tiger.setWord("tiger");
-//        tiger.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.ANIMALS));
-//        tiger.setDescription("An animal which is from the cats family and can run very fast.");
-//        tiger.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY));
-//
-//        Word newYork = new Word();
-//        newYork.setWord("new york");
-//        newYork.setCategory(categoryRepository.findCategoryByCategoryEnum(CategoryEnum.GEOGRAPHY));
-//        newYork.setDescription("A very big city which is located somewhere in USA.");
-//        newYork.setDifficulty(difficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.HARD));
-//
-//
-//        wordRepository.save(tiger);
-//        wordRepository.save(newYork);
-//    }
 
 
 }

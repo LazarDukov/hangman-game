@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hangman</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.png}">
+    <style>
+        .navbar {
+            overflow: hidden;
+            position: center; /* Set the navbar to fixed position */
+            top: 0; /* Position the navbar at the top of the page */
+            width: 100%;
+            border-bottom: 1px solid white; /* Full width */
+            margin-bottom: 200px;
+        }
+
+        .navbar a {
+            float: left;
+            color: white;
+            font-family: "Bradley Hand ITC", cursive;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+
+        }
+
+        .navbar input[type="submit"] {
+            float: left;
+            color: white;
+            background: none;
+            border: none;
+            font-family: "Bradley Hand ITC", cursive;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar label {
+            float: left;
+            color: black;
+            background: none;
+            border: none;
+            font-family: "Bradley Hand ITC", cursive;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Links inside the navbar */
+
+
+    </style>
+
+
+</head>
+
+<header>
+    <div th:fragment="navbar">
+        <nav class="navbar">
+
+
+            <a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+            <form>
+                <label class="welcome" style="color: white; text-decoration: underline" sec:authorize="isAuthenticated()">Welcome,
+                    <th:block
+                            sec:authentication="name"></th:block>
+                </label>
+            </form>
+            <a sec:authorize="isAuthenticated()" th:href="@{/my-profile}">My profile</a>
+
+            <a>
+                <form sec:authorize="isAuthenticated()" th:method="post" th:action="@{/logout}" th:href="@{/}">
+                    <input type="submit" name="" value="Logout">
+                </form>
+            </a>
+            <a style="position: absolute; left: 800px" th:href="@{/}">Home</a>
+            <a style="position: absolute; left: 900px" th:href="@{/ranking}">Ranking</a>
+        </nav>
+    </div>
+</header>
+
+</html>

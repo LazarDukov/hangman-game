@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/navbar::head}"></head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hangman</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<header>
+    <div th:replace="~{fragments/navbar :: navbar}">
+        Navbar
+    </div>
+    <body class="index">
+
+    <h1 class="my-profile-h1">My profile:</h1>
+    <br>
+    <div>
+        <table class="table-my-profile" th:object="${currentUser}" th:method="get">
+
+            <tr>
+                <th>Username:</th>
+                <td th:text="${currentUser.getUsername()}"></td>
+            </tr>
+
+            <tr>
+                <th>First name:</th>
+                <td th:text="${currentUser.getFirstName()}"></td>
+            </tr>
+
+            <tr>
+                <th>Last name:</th>
+                <td th:text="${currentUser.getLastName()}"></td>
+            </tr>
+
+            <tr>
+                <th>Email:</th>
+                <td th:text="${currentUser.getEmail()}"></td>
+            </tr>
+            <tr>
+                <th>Points:</th>
+                <td th:text="${currentUser.getPoints()}"></td>
+            </tr>
+
+
+        </table>
+    </div>
+    <a style="position:relative; margin-left: 500px;
+    margin-top: 40px;
+    font-size: 40px;
+    color: white; border-bottom: none; text-decoration: none;
+background-color: #a6f6ff;" th:href="@{/edit-profile}">Edit profile</a>
+
+    </body>
+
+    <div th:replace="~{fragments/footer :: footer}">
+        footer
+    </div>
+</header>
+</html>

@@ -1,9 +1,8 @@
 package com.example.hangman.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "words")
@@ -18,6 +17,7 @@ public class Word extends BaseEntity {
     private Category category;
     @OneToOne
     private Difficulty difficulty;
+
 
     public Word() {
     }

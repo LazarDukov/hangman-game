@@ -6,11 +6,11 @@ import com.example.hangman.model.entity.Difficulty;
 import com.example.hangman.model.entity.Word;
 import com.example.hangman.model.enums.CategoryEnum;
 import com.example.hangman.model.enums.DifficultyEnum;
-import com.example.hangman.model.enums.UserRoleEnum;
 import com.example.hangman.repository.CategoryRepository;
 import com.example.hangman.repository.DifficultyRepository;
 import com.example.hangman.repository.WordRepository;
 import com.example.hangman.service.WordService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,9 +22,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import java.util.List;
-
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class WordServiceTests {
@@ -41,46 +39,45 @@ public class WordServiceTests {
 
     @Captor
     private ArgumentCaptor<Word> wordToAdd;
-
+    @Mock
+    private NewWordDTO newWordDTO;
+    @Mock
+    private Word word;
     private WordService serviceToTest;
+
 
     @BeforeEach
     void setUp() {
         Category animals = new Category().setCategoryEnum(CategoryEnum.ANIMALS);
-        mockCategoryRepository.save(animals);
         Difficulty easy = new Difficulty().setDifficultyEnum(DifficultyEnum.EASY);
-        mockDifficultyRepository.save(easy);
+        newWordDTO = new NewWordDTO();
+        newWordDTO.setWord("tiger");
+        newWordDTO.setDescription("This animal is running fast and he like to eat meat. It is a big cat");
+        newWordDTO.setCategory("ANIMALS");
 
+        when(mockCategoryRepository.findCategoryByCategoryEnum(CategoryEnum.ANIMALS)).thenReturn(animals);
+        when(mockDifficultyRepository.findDifficultyByDifficultyEnum(DifficultyEnum.EASY)).thenReturn(easy);
+        word = new Word();
+        word.setWord(newWordDTO.getWord());
+        word.setDescription(newWordDTO.getDescription());
+        word.setCategory(animals);
+        lenient().when(mockModelMapper.map(newWordDTO, Word.class)).thenReturn(word);
 
         serviceToTest = new WordService(mockWordRepository, mockDifficultyRepository,
                 mockCategoryRepository, mockModelMapper);
     }
 
+
     @Test
     void addNewWordTest() {
-        NewWordDTO wordTest = new NewWordDTO();
-        wordTest.setWord("tiger");
-        wordTest.setDescription("This animal is running fast and he like to eat meat. It is a big cat");
-        wordTest.setCategory("ANIMALS");
 
 
-        serviceToTest.addNewWord(wordTest);
+        serviceToTest.addNewWord(newWordDTO);
 
         Mockito.verify(mockWordRepository).save(wordToAdd.capture());
         Word capturedWord = wordToAdd.getValue();
-        Assertions.assertEquals(wordTest.getWord(), capturedWord.getWord());
-        Assertions.assertEquals(wordTest.getDescription(), capturedWord.getDescription());
+        Assertions.assertEquals(word.getWord(), capturedWord.getWord());
+        Assertions.assertEquals(word.getDescription(), capturedWord.getDescription());
     }
 
-    @Test
-    void getAllWords() {
-    }
-
-    @Test
-    void getWordById() {
-    }
-
-    @Test
-    void deleteWord() {
-    }
 }
